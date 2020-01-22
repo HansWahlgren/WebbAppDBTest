@@ -30,6 +30,8 @@ namespace WebbAppDBTest
             services.AddDbContext<TestDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IPersonService, PersonService>();
+
             services.AddMvc();
         }
 
