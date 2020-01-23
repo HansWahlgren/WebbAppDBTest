@@ -16,7 +16,7 @@ namespace WebbAppDBTest
     public class Startup
     {
         //Adds Configuration settings for DB
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration Configuration;
 
         public Startup(IConfiguration configuration)
         {
@@ -29,6 +29,8 @@ namespace WebbAppDBTest
         {
             services.AddDbContext<TestDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             services.AddScoped<IPersonService, PersonService>();
 

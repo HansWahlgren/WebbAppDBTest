@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace WebbAppDBTest.Models
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
-        Person Create(PersonViewModel person);
+        Person Create(Person person);
         Person Find(int id);
         List<Person> All();
-        Person Update(PersonViewModel person, int id);
-        bool RemovePerson(int id);
+        Person Update(Person person);
+        bool RemovePerson(Person person);
         List<Person> FilterPeople(string userInput);
     }
 }

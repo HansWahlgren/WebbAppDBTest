@@ -7,36 +7,47 @@ namespace WebbAppDBTest.Models
 {
     public class PersonService : IPersonService
     {
-        readonly TestDbContext _testDbContext;
+        readonly IPersonRepository _personRepository;
 
-        public PersonService(TestDbContext testDbContext)
+        public PersonService(IPersonRepository personRepository)
         {
-            _testDbContext = testDbContext;
+            _personRepository = personRepository;
         }
 
         public Person Create(PersonViewModel person)
         {
-            return null;
+            Person newPerson = new Person()
+            {
+                Name = person.Name,
+                PhoneNumber = person.PhoneNumber,
+                City = person.City
+            };
+            return _personRepository.Create(newPerson);
         }
+
         public Person Find(int id)
         {
-            return null;
+            return _personRepository.Find(id);
         }
+
         public List<Person> All()
         {
-            return null;
+            return _personRepository.All();
         }
+
         public Person Update(PersonViewModel person, int id)
         {
-            return null;
+            throw new NotImplementedException();
         }
-        public void RemovePerson(Person person)
+
+        public bool RemovePerson(int id)
         {
 
         }
+
         public List<Person> FilterPeople(string userInput)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

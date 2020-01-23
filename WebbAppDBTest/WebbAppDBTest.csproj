@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Repo\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

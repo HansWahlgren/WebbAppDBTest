@@ -1,7 +1,59 @@
-﻿
+﻿@model List<Person>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>People</h1>
 
+<div class="col-12">
+    <div class="row">
+        <div class="col">
+            <h5>Name</h5>
+        </div>
+        <div class="col">
+            <h5>PhoneNumber</h5>
+        </div>
+        <div class="col">
+            <h5>City</h5>
+        </div>
+        <div class="col">
+            <h5>Edit</h5>
+        </div>
+        <div class="col">
+            <h5>Remove</h5>
+        </div>
+    </div>
+
+    @*Without Partial View*@
+    @foreach (var person in Model)
+    {
+        <div id="@("editform" + @person.Id)" class="row">
+            <div class="col">
+                <p>@person.Name</p>
+            </div>
+            <div class="col">
+                <p>@person.PhoneNumber</p>
+            </div>
+            <div class="col">
+                <p>@person.City</p>
+            </div>
+            <div class="col">
+                <a class="EditBtnPartial btn btn-warning">Edit</a>
+            </div>
+            <div class="col">
+                <a class="RemoveBtnPartial btn btn-danger" asp-action="RemovePerson">Remove</a>
+            </div>
+            @*<div class="col">
+                    <a class="EditBtnPartial btn btn-warning" onclick="jsFormEditPerson(event, @person.Id)" asp-controller="People" asp-action="FormEditPerson" data-target="@("editform" + @person.Id)">Edit</a>
+                </div>
+                <div class="col">
+                    <a class="RemoveBtnPartial btn btn-danger" id="@person.Id">Remove</a>
+                </div>*@
+        </div>
+    }
+
+    <hr />
+    <a class="btn btn-primary" asp-action="CreatePerson">Create Person</a>
+
+    <div id="peoplePartial"></div>
+</div>
