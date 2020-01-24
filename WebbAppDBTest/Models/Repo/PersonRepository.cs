@@ -27,10 +27,10 @@ namespace WebbAppDBTest.Models
             return person;
         }
 
-        public List<Person> FilterPeople(string userInput)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Person> FilterPeople(string userInput)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Person Find(int id)
         {
@@ -39,12 +39,24 @@ namespace WebbAppDBTest.Models
 
         public bool RemovePerson(Person person)
         {
-            throw new NotImplementedException();
+            var result = _testDbContext.People.Remove(person);
+
+            _testDbContext.SaveChanges();
+
+            return true;
         }
 
-        public Person Update(Person person)
+        public Person Update(PersonViewModel person, int id)
         {
-            throw new NotImplementedException();
+            Person originalPerson = Find(id);
+
+            originalPerson.Name = person.Name;
+            originalPerson.PhoneNumber = person.PhoneNumber;
+            originalPerson.City = person.City;
+
+            _testDbContext.SaveChanges();
+
+            return originalPerson;
         }
     }
 }

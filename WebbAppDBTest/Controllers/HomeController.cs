@@ -9,16 +9,30 @@ namespace WebbAppDBTest.Controllers
 {
     public class HomeController : Controller
     {
-        IPersonService _personService;
+        readonly IPersonService _personService;
 
         public HomeController(IPersonService personService)
         {
             _personService = personService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View(_personService.All());
+        }
+
+        [HttpPost]
+        public IActionResult Index(string userInput)
+        {
+            if (userInput != null)
+            {
+                return View(_personService.FilterPeople(userInput));
+            }
+            else
+            {
+                return View(_personService.All());
+            }
         }
 
         //public IActionResult PersonPartialView()
@@ -54,6 +68,24 @@ namespace WebbAppDBTest.Controllers
 
             //}
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult UpdatePerson(int id)
+        {
+            Person person = _personService.Find(id);
+            return View(person);
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePerson(PersonViewModel person, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Person updatedPerson = _personService.Update(person, id);
+                return RedirectToAction("Index");
+            }
+            return View(person);
         }
     }
 }

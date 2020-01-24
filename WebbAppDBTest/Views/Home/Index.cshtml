@@ -5,6 +5,11 @@
 
 <h1>People</h1>
 
+<form id="filterPeopleForm" asp-action="index" method="post">
+    <input type="text" name="userInput" value="" />
+    <input type="submit" value="Filter" />
+</form>
+
 <div class="col-12">
     <div class="row">
         <div class="col">
@@ -38,10 +43,10 @@
                 <p>@person.City</p>
             </div>
             <div class="col">
-                <a class="EditBtnPartial btn btn-warning">Edit</a>
+                <a class="EditBtnPartial btn btn-warning" asp-action="UpdatePerson" asp-route-id="@person.Id">Edit</a>
             </div>
             <div class="col">
-                <a class="RemoveBtnPartial btn btn-danger" asp-action="RemovePerson">Remove</a>
+                <a class="RemoveBtnPartial btn btn-danger" asp-action="RemovePerson" asp-route-id="@person.Id">Remove</a>
             </div>
             @*<div class="col">
                     <a class="EditBtnPartial btn btn-warning" onclick="jsFormEditPerson(event, @person.Id)" asp-controller="People" asp-action="FormEditPerson" data-target="@("editform" + @person.Id)">Edit</a>

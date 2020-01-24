@@ -1,12 +1,11 @@
-﻿@model PersonViewModel
+﻿@model Person
 @{
-    ViewData["Title"] = "CreatePerson";
+    ViewData["Title"] = "UpdatePerson";
 }
 
-<h1>CreatePerson</h1>
+<h1>UpdatePerson</h1>
 
-<form asp-action="CreatePerson" asp-controller="Home" method="post">
-
+<form id="ConfirmEditForm" asp-route-id="@Model.Id" asp-controller="Home" asp-action="UpdatePerson" method="post">
     <label asp-for="Name"></label>
     <input asp-for="Name" />
     <span asp-validation-for="Name"></span>
@@ -22,5 +21,5 @@
     <span asp-validation-for="City"></span>
     <br />
 
-    <input type="submit" value="Create" />
+    <input id="ConfirmEditBtn" type="submit" value="Edit Person" />
 </form>

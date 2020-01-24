@@ -10,8 +10,8 @@ namespace WebbAppDBTest.Models
         Person Create(Person person);
         Person Find(int id);
         List<Person> All();
-        Person Update(Person person);
+        Person Update(PersonViewModel person, int id);
         bool RemovePerson(Person person);
-        List<Person> FilterPeople(string userInput);
+        //List<Person> FilterPeople(string userInput);
     }
 }
